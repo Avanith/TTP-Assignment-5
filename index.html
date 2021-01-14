@@ -9,21 +9,32 @@
   </head>
 
   <body>
-    <div>
+    <div id="buttonContainer">
       <button id="addRow">Add Row</button>
       <button id="addCol">Add Column</button>
       <button id="removeRow">Remove Row</button>
       <button id="removeCol">Remove Col</button>
+      <button id="colorAllBtn">Color All</button>
+      <button id="colorAllUnclrdBtn">Color All Uncolored</button>
+
+      <label for="colors">Choose a color</label>
+      <select name="colors" onchange="selectColor(this.value)">
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="orange">Orange</option>
+        <option value="black">Black</option>
+        <option value="white">White</option>
+      </select>
     </div>
 
     <table id="table">
       <tr id="row" class="row">
-        <td class="cell"></td>
-        <td class="cell"></td>
+        <td id="1" class="cell" onclick="colorCell(this)"></td>
+        <td id="2" class="cell" onclick="colorCell(this)"></td>
       </tr>
       <tr id="row" class="row">
-        <td class="cell"></td>
-        <td class="cell"></td>
+        <td id="3" class="cell" onclick="colorCell(this)"></td>
+        <td id="4" class="cell" onclick="colorCell(this)"></td>
       </tr>
     </table>
   </body>
