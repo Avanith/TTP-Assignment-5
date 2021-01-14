@@ -1,13 +1,37 @@
 let columns = 2;
 let userColor = "";
+let mouseHold = false;
 
-// TO-DO
-// colorAll cells doesn't always color all cells
+let cellMouseDown = (item) => {
+  mouseHold = true;
+};
 
-let colorCell = (item) => {
+let cellMouseMove = (item) => {
+  if (mouseHold) item.style.backgroundColor = userColor;
+};
+let cellMouseUp = (item) => {
+  if (mouseHold) {
+    mouseHold = false;
+  }
+};
+let onClickListener = (item) => {
   item.addEventListener("click", () => {
     console.log("cell clicked");
     item.style.backgroundColor = userColor;
+  });
+
+  item.addEventListener("mousedown", () => {
+    mouseHold = true;
+  });
+
+  item.addEventListener("mousemove", () => {
+    if (mouseHold) item.style.backgroundColor = userColor;
+  });
+
+  item.addEventListener("mouseup", () => {
+    if (mouseHold) {
+      mouseHold = false;
+    }
   });
 };
 
@@ -18,21 +42,21 @@ function addRow() {
   row.setAttribute("id", "row");
   let allCells = document.querySelectorAll(".cell");
   let totalNumberOfCells = allCells.length;
-
   table.appendChild(row);
+
   for (let i = 0; i < columns; i++) {
     let cell = document.createElement("td");
     cell.classList.add("cell");
     cell.setAttribute("id", totalNumberOfCells + i + 1);
-    colorCell(cell);
+    onClickListener(cell);
     row.appendChild(cell);
   }
 } // end addRow
 
-// let colorCell = (id) => {
-//   let selectedCell = document.getElementById(id);
-//   selectedCell.style.backgroundColor = userColor;
-// }; // end colorCell
+let colorCell = (id) => {
+  let selectedCell = document.getElementById(id);
+  selectedCell.style.backgroundColor = userColor;
+}; // end colorCell
 
 // the color selection onclick calls this method
 let selectColor = (color) => {
@@ -55,7 +79,7 @@ let addCol = () => {
     let cell = document.createElement("td");
     cell.classList.add("cell");
     cell.setAttribute("id", totalNumberOfCells + i + 1);
-    colorCell(cell);
+    onClickListener(cell);
     rows[i].appendChild(cell);
   }
 }; // end addCol
