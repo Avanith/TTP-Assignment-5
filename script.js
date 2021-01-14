@@ -108,3 +108,11 @@ colorAllUnclrdBtn.onclick = () => {
       cell.style.backgroundColor = userColor;
   });
 };
+
+let clearCellsBtn = document.getElementById("clearAllCells");
+clearCellsBtn.onclick = () => {
+  let allCells = document.querySelectorAll(".cell");
+  allCells.forEach((cell) => {
+    cell.style.backgroundColor = "";
+  });
+};
